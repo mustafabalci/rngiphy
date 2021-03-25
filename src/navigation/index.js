@@ -1,1 +1,1 @@
-export Stack from './stack';
+export Stack from './Stack';
