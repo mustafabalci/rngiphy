@@ -5,13 +5,29 @@ import { HomeScreen, SearchingScreen, TrendingScreen } from '@screens';
 
 const MainStack = createStackNavigator();
 
+const stackOptions = {
+  headerShown: false,
+};
+
 const Stack = () => {
   return (
     <NavigationContainer>
       <MainStack.Navigator>
-        <MainStack.Screen name="Home" component={HomeScreen} />
-        <MainStack.Screen name="Trending" component={SearchingScreen} />
-        <MainStack.Screen name="Searching" component={TrendingScreen} />
+        <MainStack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={stackOptions}
+        />
+        <MainStack.Screen
+          name="Trending"
+          component={SearchingScreen}
+          options={stackOptions}
+        />
+        <MainStack.Screen
+          name="Searching"
+          component={TrendingScreen}
+          options={stackOptions}
+        />
       </MainStack.Navigator>
     </NavigationContainer>
   );
