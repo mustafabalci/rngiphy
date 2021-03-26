@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import { PageWrapper } from '../components';
 
 const HomeScreen = () => {
   return (
-    <View>
-      <Text>HomeScreen</Text>
-    </View>
+    <PageWrapper>
+      <Text>asdasdad</Text>
+    </PageWrapper>
   );
 };
 
