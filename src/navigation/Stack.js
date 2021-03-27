@@ -20,12 +20,12 @@ const Stack = () => {
         />
         <MainStack.Screen
           name="Trending"
-          component={SearchingScreen}
+          component={TrendingScreen}
           options={stackOptions}
         />
         <MainStack.Screen
           name="Searching"
-          component={TrendingScreen}
+          component={SearchingScreen}
           options={stackOptions}
         />
       </MainStack.Navigator>
