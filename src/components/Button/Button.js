@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   TouchableHighlight,
   TouchableNativeFeedback,
   Platform,
   StyleSheet,
   View,
+  Text,
 } from 'react-native';
-import { Text } from 'react-native';
 
 const Button = ({ text, ...rest }) => {
   const renderButton = () =>
