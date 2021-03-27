@@ -11,7 +11,8 @@
           "@components": "./src/components",
           "@contexts": "./src/context",
           "@utilities": "./src/utilities",
-          "@navigation": "./src/navigation"
+          "@navigation": "./src/navigation",
+          "@assets": "./src/assets"
         }
       }
     ]
