@@ -60,12 +60,6 @@ export const BookmarkProvider = ({ children }) => {
   return (
     <BookmarkContext.Provider
       value={{ addBookmark, removeBookmark, bookmarked, bookmarks }}>
-      <Pressable onPress={() => console.log(bookmarks)}>
-        <Text>state</Text>
-      </Pressable>
-      <Pressable onPress={() => AsyncStorage.clear()}>
-        <Text>temizle</Text>
-      </Pressable>
       {children}
     </BookmarkContext.Provider>
   );
