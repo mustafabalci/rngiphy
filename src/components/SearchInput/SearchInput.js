@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { View, TextInput, StyleSheet, Pressable, Keyboard } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import { DataContext } from '../../contexts/DataContext';
 
 const SearchInput = ({ onSubmit }) => {

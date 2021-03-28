@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { FlatList, RefreshControl, StyleSheet } from 'react-native';
+
 import { DataContext } from '../contexts/DataContext';
 import { Heading, PageWrapper, SearchInput, ListItem } from '../components';
 
