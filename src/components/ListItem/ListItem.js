@@ -1,10 +1,15 @@
 import React from 'react';
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, View, Pressable } from 'react-native';
 
-const ListItem = ({ sourceUri }) => {
+const ListItem = ({ navigation, gif }) => {
   return (
     <View style={styles.gifImageWrapper}>
-      <Image source={{ uri: sourceUri }} style={styles.gifImage} />
+      <Pressable onPress={() => navigation.navigate('Details', { gif })}>
+        <Image
+          source={{ uri: gif.images.fixed_height.url }}
+          style={styles.gifImage}
+        />
+      </Pressable>
     </View>
   );
 };

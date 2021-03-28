@@ -30,7 +30,7 @@ const SearchingScreen = ({ navigation }) => {
   }, [navigation]);
 
   const renderItem = ({ item }) => (
-    <ListItem sourceUri={item.images.fixed_height.url} />
+    <ListItem gif={item} navigation={navigation} />
   );
 
   return (
