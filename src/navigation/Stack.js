@@ -2,7 +2,12 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { HomeScreen, SearchingScreen, TrendingScreen } from '@screens';
+import {
+  HomeScreen,
+  SearchingScreen,
+  TrendingScreen,
+  GifDetailScreen,
+} from '@screens';
 
 const MainStack = createStackNavigator();
 
@@ -27,6 +32,11 @@ const Stack = () => {
         <MainStack.Screen
           name="Searching"
           component={SearchingScreen}
+          options={stackOptions}
+        />
+        <MainStack.Screen
+          name="Details"
+          component={GifDetailScreen}
           options={stackOptions}
         />
       </MainStack.Navigator>
