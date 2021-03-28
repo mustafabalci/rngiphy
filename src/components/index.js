@@ -4,3 +4,4 @@ export Button from './Button/Button';
 export SearchInput from './SearchInput/SearchInput';
 export Heading from './Heading/Heading';
 export ListItem from './ListItem/ListItem';
+export InfoModal from './InfoModal/InfoModal';
