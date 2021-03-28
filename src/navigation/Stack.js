@@ -2,12 +2,8 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import {
-  HomeScreen,
-  SearchingScreen,
-  TrendingScreen,
-  GifDetailScreen,
-} from '@screens';
+import { HomeScreen, SearchingScreen, TrendingScreen } from '@screens';
+import DetailStack from './DetailStack';
 
 const MainStack = createStackNavigator();
 
@@ -36,7 +32,7 @@ const Stack = () => {
         />
         <MainStack.Screen
           name="Details"
-          component={GifDetailScreen}
+          component={DetailStack}
           options={stackOptions}
         />
       </MainStack.Navigator>
