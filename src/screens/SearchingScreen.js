@@ -10,6 +10,7 @@ const SearchingScreen = ({ navigation }) => {
     searchingGifs,
     fetching,
     setSearchingGifs,
+    handleLoadMoreSearching,
   } = useContext(DataContext);
 
   useEffect(() => {
@@ -44,6 +45,8 @@ const SearchingScreen = ({ navigation }) => {
         refreshControl={
           <RefreshControl refreshing={fetching} onRefresh={getSearchingGifs} />
         }
+        onEndReachedThreshold={0.01}
+        onEndReached={handleLoadMoreSearching}
         style={styles.flatList}
       />
     </PageWrapper>

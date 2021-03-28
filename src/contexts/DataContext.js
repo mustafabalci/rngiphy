@@ -1,4 +1,5 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useContext } from 'react';
+import { UtilsContext } from './UtilsContext';
 
 export const DataContext = createContext();
 
@@ -12,7 +13,10 @@ export const DataProvider = ({ children }) => {
   const [fetching, setFetching] = useState(false);
 
   const [searchingGifs, setSearchingGifs] = useState([]);
+  const [searchingDataOffset, setSearchingDataOffset] = useState(0);
   const [searchTerm, setSearchTerm] = useState(null);
+
+  const { openModal } = useContext(UtilsContext);
 
   const getTrendingGifs = async () => {
     setFetching(true);
@@ -26,7 +30,7 @@ export const DataProvider = ({ children }) => {
       setFetching(false);
     } catch (e) {
       setFetching(false);
-      console.log(e);
+      openModal('Gifler yüklenirken bir problem meydana geldi');
     }
   };
 
@@ -34,13 +38,13 @@ export const DataProvider = ({ children }) => {
     const offsetNumber = trendingDataOffset + 20;
     try {
       const moreTrendingGifResponse = await fetch(
-        `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=20&offset=${offsetNumber}`,
+        `${API_BASE_URL}/gifs/trending?api_key=${API_KEY}&limit=20&offset=${offsetNumber}`,
       );
       const moreTrendingGifData = await moreTrendingGifResponse.json();
       setTrendingGifs(trendingGifs.concat(moreTrendingGifData.data));
       setTrendingDataOffset(offsetNumber);
     } catch (e) {
-      console.log(e);
+      openModal('Yeni gifler yüklenirken bir problem meydana geldi');
     }
   };
 
@@ -55,7 +59,21 @@ export const DataProvider = ({ children }) => {
       setFetching(false);
     } catch (e) {
       setFetching(false);
-      console.log(e);
+      openModal('Gifler yüklenirken bir problem meydana geldi');
+    }
+  };
+
+  const handleLoadMoreSearching = async () => {
+    const offsetNumber = searchingDataOffset + 20;
+    try {
+      const moreSearchingGifResponse = await fetch(
+        `${API_BASE_URL}/gifs/search?api_key=${API_KEY}&q=${searchTerm}&limit=20&offset=${offsetNumber}`,
+      );
+      const moreSearchingGifData = await moreSearchingGifResponse.json();
+      setSearchingGifs(searchingGifs.concat(moreSearchingGifData.data));
+      setSearchingDataOffset(offsetNumber);
+    } catch (e) {
+      openModal('Yeni gifler yüklenirken bir problem meydana geldi');
     }
   };
 
@@ -69,6 +87,7 @@ export const DataProvider = ({ children }) => {
         searchingGifs,
         getSearchingGifs,
         setSearchingGifs,
+        handleLoadMoreSearching,
         searchTerm,
         setSearchTerm,
       }}>
