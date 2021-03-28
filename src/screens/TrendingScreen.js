@@ -1,22 +1,15 @@
 import React, { useEffect, useContext } from 'react';
-import {
-  View,
-  Image,
-  Text,
-  FlatList,
-  RefreshControl,
-  TextInput,
-  StyleSheet,
-} from 'react-native';
+import { FlatList, RefreshControl, StyleSheet } from 'react-native';
 import { DataContext } from '../contexts/DataContext';
-import { PageWrapper } from '../components';
+import { Heading, PageWrapper, SearchInput, ListItem } from '../components';
 
-const TrendingScreen = () => {
+const TrendingScreen = ({ navigation }) => {
   const {
     getTrendingGifs,
     trendingGifs,
     fetching,
     handleLoadMore,
+    setSearchTerm,
   } = useContext(DataContext);
 
   useEffect(() => {
@@ -25,28 +18,25 @@ const TrendingScreen = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      setSearchTerm(null);
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
   const renderItem = ({ item }) => (
-    <View style={styles.gifImageWrapper}>
-      <Image
-        source={{ uri: item.images.fixed_height.url }}
-        style={styles.gifImage}
-      />
-    </View>
+    <ListItem sourceUri={item.images.fixed_height.url} />
   );
 
   return (
     <PageWrapper>
-      <View>
-        <TextInput
-          numberOfLines={1}
-          placeholder="Gif Ara..."
-          placeholderTextColor="#FFFFFF"
-          style={styles.input}
-        />
-      </View>
-      <View>
-        <Text style={styles.heading}>Trending gifs</Text>
-      </View>
+      <SearchInput
+        navigation={navigation}
+        onSubmit={() => navigation.navigate('Searching')}
+      />
+      <Heading text="Trending gifs" />
       <FlatList
         data={trendingGifs}
         renderItem={renderItem}
@@ -64,28 +54,9 @@ const TrendingScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  input: {
-    paddingVertical: 10,
-    paddingHorizontal: 16,
-    backgroundColor: '#828282',
-    borderRadius: 32,
-    color: '#FFFFFF',
-  },
-  heading: {
-    marginVertical: 16,
-    color: '#FFFFFF',
-    fontFamily: 'Roboto-Regular',
-    fontWeight: '700',
-    fontSize: 18,
-  },
   flatList: {
     marginHorizontal: -8,
   },
-  gifImage: {
-    width: '100%',
-    height: 200,
-  },
-  gifImageWrapper: { flex: 1 / 3, padding: 8 },
 });
 
 export default TrendingScreen;
